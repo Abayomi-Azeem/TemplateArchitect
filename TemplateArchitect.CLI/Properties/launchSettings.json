@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TemplateArchitect.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "\"clean\" \"C:\\Users\\abaomi\\source\\TestFolders\" \"TestApplication\" \"net9.0\""
+    }
+  }
+}

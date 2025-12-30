@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36811.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateArchitect.CLI", "TemplateArchitect.CLI\TemplateArchitect.CLI.csproj", "{66E21D3B-10E7-416F-8ED6-69EFB092A618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateArchitect.WPF", "TemplateArchitect.WPF\TemplateArchitect.WPF.csproj", "{5E256E23-84A1-4FA0-9ACC-BCC19682AA6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66E21D3B-10E7-416F-8ED6-69EFB092A618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E21D3B-10E7-416F-8ED6-69EFB092A618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E21D3B-10E7-416F-8ED6-69EFB092A618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E21D3B-10E7-416F-8ED6-69EFB092A618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E256E23-84A1-4FA0-9ACC-BCC19682AA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E256E23-84A1-4FA0-9ACC-BCC19682AA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E256E23-84A1-4FA0-9ACC-BCC19682AA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E256E23-84A1-4FA0-9ACC-BCC19682AA6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E214E2B-9101-4443-A6D7-E17F9A89024B}
+	EndGlobalSection
+EndGlobal
