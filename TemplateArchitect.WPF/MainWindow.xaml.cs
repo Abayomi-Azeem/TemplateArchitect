@@ -26,70 +26,70 @@ namespace TemplateArchitect.WPF
 
         }
 
-        private async void Run_Click(object sender, RoutedEventArgs e)
-        {
-            OutputTextBox.Clear();
-            RunButton.IsEnabled = false;
-            try
-            {
-                var workingDir = WorkingDirTextBox.Text;
-                var command = CommandTextBox.Text;
+        //private async void Run_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OutputTextBox.Clear();
+        //    RunButton.IsEnabled = false;
+        //    try
+        //    {
+        //        var workingDir = WorkingDirTextBox.Text;
+        //        var command = CommandTextBox.Text;
 
-                var psi = new ProcessStartInfo
-                {
-                    FileName = "TemplateArchitect.CLI.exe",
-                    Arguments = $"\"{workingDir}\" \"{command}\"",
-                    UseShellExecute = false,
-                    RedirectStandardError = true,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                };
+        //        var psi = new ProcessStartInfo
+        //        {
+        //            FileName = "TemplateArchitect.CLI.exe",
+        //            Arguments = $"\"{workingDir}\" \"{command}\"",
+        //            UseShellExecute = false,
+        //            RedirectStandardError = true,
+        //            RedirectStandardOutput = true,
+        //            CreateNoWindow = true
+        //        };
 
-                var process = new Process { StartInfo = psi };
+        //        var process = new Process { StartInfo = psi };
 
-                process.OutputDataReceived += (sender, args) =>
-                {
-                    if (args.Data != null)
-                    {
-                        Dispatcher.Invoke(() =>
-                                    OutputTextBox.AppendText(args.Data + "\n"));
-                    }
-                };
-                process.ErrorDataReceived += (sender, args) =>
-                {
-                    if (args.Data != null)
-                    {
-                        Dispatcher.Invoke(() =>
-                                    OutputTextBox.AppendText("[ERR] " + args.Data + "\n"));
-                    }
-                };
+        //        process.OutputDataReceived += (sender, args) =>
+        //        {
+        //            if (args.Data != null)
+        //            {
+        //                Dispatcher.Invoke(() =>
+        //                            OutputTextBox.AppendText(args.Data + "\n"));
+        //            }
+        //        };
+        //        process.ErrorDataReceived += (sender, args) =>
+        //        {
+        //            if (args.Data != null)
+        //            {
+        //                Dispatcher.Invoke(() =>
+        //                            OutputTextBox.AppendText("[ERR] " + args.Data + "\n"));
+        //            }
+        //        };
 
-                process.Start();
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
+        //        process.Start();
+        //        process.BeginOutputReadLine();
+        //        process.BeginErrorReadLine();
 
-                await process.WaitForExitAsync();
-            }
-            finally
-            {
-                RunButton.IsEnabled = true;
-            }
+        //        await process.WaitForExitAsync();
+        //    }
+        //    finally
+        //    {
+        //        RunButton.IsEnabled = true;
+        //    }
 
-        }
+        //}
 
-        private async void Browse_Click(object sender, RoutedEventArgs e)
-        {
-            using var dialog = new FolderBrowserDialog
-            {
-                Description = "Select Project Folder",
-                UseDescriptionForTitle  = true,
-                ShowHiddenFiles = true,
-            };
+        //private async void Browse_Click(object sender, RoutedEventArgs e)
+        //{
+        //    using var dialog = new FolderBrowserDialog
+        //    {
+        //        Description = "Select Project Folder",
+        //        UseDescriptionForTitle  = true,
+        //        ShowHiddenFiles = true,
+        //    };
 
-            if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                WorkingDirTextBox.Text = dialog.SelectedPath;
-            }
-        }
+        //    if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        //    {
+        //        WorkingDirTextBox.Text = dialog.SelectedPath;
+        //    }
+        //}
     }
 }

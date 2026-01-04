@@ -56,10 +56,16 @@ namespace TemplateArchitect.CLI.Core
             var srcPath = Path.Combine(newPath, "src");
             var testPath = Path.Combine(newPath, "test");
 
-            var srcDir =Directory.CreateDirectory(srcPath);
-            var testDir =Directory.CreateDirectory(testPath);
+            _ = Directory.CreateDirectory(srcPath);
+            _ = Directory.CreateDirectory(testPath);
 
             return srcPath;
+        }
+
+        public static string FormulateProjectPath(string workingDir, string appName, string layerName)
+        {
+            var project = Path.Combine(workingDir, $"{appName}.{layerName}");
+            return project;
         }
     }
 }

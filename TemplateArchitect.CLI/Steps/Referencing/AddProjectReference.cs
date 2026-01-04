@@ -21,8 +21,8 @@ namespace TemplateArchitect.CLI.Steps.Referencing
 
         public async override Task<ProcessResponse?> Handle(string workingDir, string appName, string dotNetVersion)
         {
-            var projectDir = FormulateProjectPath(workingDir, appName, _projectName);
-            var referencedProjectDir = FormulateProjectPath(workingDir, appName, _referencedProject);
+            var projectDir = ProcessManager.FormulateProjectPath(workingDir, appName, _projectName);
+            var referencedProjectDir = ProcessManager.FormulateProjectPath(workingDir, appName, _referencedProject);
             var processResponse = await ProcessManager.RunProcess("dotnet", $"add {projectDir} reference {referencedProjectDir}", workingDir);
 
             if (processResponse == null)
@@ -36,10 +36,6 @@ namespace TemplateArchitect.CLI.Steps.Referencing
             }
         }
 
-        private string FormulateProjectPath(string workingDir, string appName, string layerName)
-        {
-            var project = Path.Combine(workingDir, $"{appName}.{layerName}");
-            return project;
-        }
+        
     }
 }

@@ -17,6 +17,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -28,9 +29,30 @@
           SelectedValue="{Binding SelectedArchitecture, Mode=TwoWay}"
           ItemsSource="{Binding AvailableArchitectureTypes}">
         </ComboBox>
+        <Grid Grid.Row="2" Margin="0,5,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <CheckBox Content="Create Separate Class Library for Contracts"
+                      IsChecked="{Binding ShouldCreateSeparateContractsProject, Mode=TwoWay}"
+                      Margin="0,10,0,5"
+                      Width="300"
+                      FontWeight="SemiBold"
+                      FontSize="14"
+                      ></CheckBox>
+            <TextBox Grid.Column="1"
+                     Height="30"
+                     Margin="5,5,5,5"
+                     Text="{Binding SeparateContractsProjectName,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}"
+                     Visibility="{Binding SeparateContractsProjectNameBoxVisibility}"
+                     ></TextBox>
+        </Grid>
         <TextBlock Text="Working Directory:"
-                   Grid.Row="2"></TextBlock>
-        <Grid Grid.Row="3" Margin="0,5,0,10">
+                   Grid.Row="3"></TextBlock>
+        <Grid Grid.Row="4" Margin="0,5,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -48,18 +70,18 @@
             </Button>
             
         </Grid>
-        <TextBlock Text="Application Name:" Grid.Row="4"></TextBlock>
+        <TextBlock Text="Application Name:" Grid.Row="5"></TextBlock>
         <TextBox x:Name="CommandTextBox"
-                 Grid.Row="5"
+                 Grid.Row="6"
                  Height="30"
                  Margin="0,5,0,10"
                  Text="{Binding ApplicationName,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <TextBlock Text="DotNet Version:"
-          Grid.Row="6"
+          Grid.Row="7"
           Margin="0,0,0,5"></TextBlock>
-        <ComboBox Grid.Row="7"
+        <ComboBox Grid.Row="8"
                   Margin="0,0,0,10"
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="Value"
@@ -68,13 +90,13 @@
         </ComboBox>
         <Button x:Name="RunButton"
                 Content="Run"
-                Grid.Row="8"
+                Grid.Row="9"
                 Height="30"
                 IsEnabled="{Binding CanRun}"
                 Command="{Binding MainPageCommand}"></Button>
 
         <TextBox x:Name="OutputTextBox"
-                 Grid.Row="9"
+                 Grid.Row="10"
                  Margin="0,10,0,0"
                  AcceptsReturn="True"
                  VerticalScrollBarVisibility="Auto"

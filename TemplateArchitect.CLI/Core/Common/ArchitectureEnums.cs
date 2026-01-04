@@ -9,5 +9,6 @@ namespace TemplateArchitect.CLI.Core.Common
     public enum ArchitectureEnums
     {
         Clean,
+        CleanPlusDDD,
     }
 }

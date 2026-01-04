@@ -22,6 +22,7 @@ namespace TemplateArchitect.WPF.ViewModels
         
         public MainPageCommandManager MainPageCommand { get; }
         public MainPageCommandManager BrowseCommand {  get; }
+        public MainPageCommandManager SeparateContractsProjectCommand { get; }
 
         private DotNetVersions? _selectedVersion;
         private ArchitectureEnums? _selectedArchitecture;
@@ -30,6 +31,9 @@ namespace TemplateArchitect.WPF.ViewModels
         private string _outputText = "";
         private bool _isRunning;
         private StringBuilder _outputBuilder = new();
+        private bool _shouldCreateSeparateContractsProject;
+        private string? _separateContractsProjectName;
+        private string? _separateContractsProjectNameBoxVisibility;
 
         public MainPageViewModel()
         {
@@ -47,8 +51,13 @@ namespace TemplateArchitect.WPF.ViewModels
             var applicationName = ApplicationName!.Replace(" ","");
             var architecture = SelectedArchitecture;
             var dotnetVersion = SelectedVersion!.GetDisplayName();
+            var separateContractsProjectName = ShouldCreateSeparateContractsProject ? SeparateContractsProjectName : null;
 
             var command = $"{architecture!.Value.ToString()} {workingDir} {applicationName} {dotnetVersion}";
+            if (ShouldCreateSeparateContractsProject)
+            {
+                command += $" -S {separateContractsProjectName}";
+            }
 
             var psi = new ProcessStartInfo
             {
@@ -101,6 +110,19 @@ namespace TemplateArchitect.WPF.ViewModels
 
         private bool CanRun() => SelectedArchitecture.HasValue && SelectedVersion.HasValue && !IsRunning;
 
+        private void SeparateContractsProjectNameVisibilityChanged()
+        {
+            if (ShouldCreateSeparateContractsProject)
+            {
+                SeparateContractsProjectNameBoxVisibility = "Visible";
+                SeparateContractsProjectName = "Enter Contracts Project Name";
+            }
+            else
+            {
+                SeparateContractsProjectNameBoxVisibility = "Hidden";
+                SeparateContractsProjectName = "";
+            }
+        }
         public DotNetVersions? SelectedVersion
         {
             get { return _selectedVersion; }
@@ -161,6 +183,39 @@ namespace TemplateArchitect.WPF.ViewModels
             set
             {
                 _isRunning = value;
+                OnPropertyChanged();
+                MainPageCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public bool ShouldCreateSeparateContractsProject
+        {
+            get { return _shouldCreateSeparateContractsProject; }
+            set
+            {
+                _shouldCreateSeparateContractsProject = value;
+                OnPropertyChanged();
+                SeparateContractsProjectNameVisibilityChanged();
+            }
+        }
+
+        public string? SeparateContractsProjectName
+        {
+            get { return _separateContractsProjectName; }
+            set
+            {
+                _separateContractsProjectName = value;
+                OnPropertyChanged();
+                MainPageCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string? SeparateContractsProjectNameBoxVisibility
+        {
+            get { return _separateContractsProjectNameBoxVisibility; }
+            set
+            {
+                _separateContractsProjectNameBoxVisibility = value;
                 OnPropertyChanged();
                 MainPageCommand.RaiseCanExecuteChanged();
             }

@@ -12,5 +12,7 @@ namespace TemplateArchitect.WPF.Core.Enums
     {
         [Display(Name ="Clean Architecture")]
         Clean,
+        [Display(Name = "Clean Architecture + Domain Driven Design")]
+        CleanPlusDDD
     }
 }
